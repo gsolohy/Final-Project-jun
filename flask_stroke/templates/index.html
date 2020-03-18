@@ -1,0 +1,110 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+  <div class="jumbotron text-center ">
+    <h1 class="display-4">Stroke</h1>
+    <p class="lead">How likely are you going to get stroke?</p>
+    <hr class="my-4">
+    <p>Utilizing machine learning to predict the chance of you getting a stroke.</p>
+  </div>
+  <div class="row mb-4">
+    <div class="col-md">
+      <div class="d-flex border justify-content-around bg-info">
+        <div class="bg-secondary text-light p-4">
+          <div class="d-flex align-items-center h-100">
+            <i class="fa fa-3x fa-fw fa-cog"></i>
+          </div>
+        </div>
+        <div class="flex-grow-1 bg-white p-4">
+          <div class="btn-group-justified">
+            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <h7 class="text-uppercase text-secondary mb-0">Age</h7>
+              <p class="font-weight-bold mb-0" id="meta-name"></p>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">16</a>
+              <a class="dropdown-item" href="#">17</a>
+              <a class="dropdown-item" href="#">18</a>
+              <a class="dropdown-item" href="#">19</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="d-flex border justify-content-around bg-info">
+        <div class="bg-secondary text-light p-4">
+          <div class="d-flex align-items-center h-100">
+            <i class="fa fa-3x fa-fw fa-cog"></i>
+          </div>
+        </div>
+        <div class="flex-grow-1 bg-white p-4">
+          <div class="btn-group-justified">
+            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <h7 class="text-uppercase text-secondary mb-0">Gender</h7>
+              <p class="font-weight-bold mb-0" id="meta-name"></p>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Male</a>
+              <a class="dropdown-item" href="#">Female</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="d-flex border justify-content-around bg-info">
+        <div class="bg-secondary text-light p-4">
+          <div class="d-flex align-items-center h-100">
+            <i class="fa fa-3x fa-fw fa-cog"></i>
+          </div>
+        </div>
+        <div class="flex-grow-1 bg-white p-4">
+          <div class="btn-group-justified">
+            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <h7 class="text-uppercase text-secondary mb-0">Ethnicity</h7>
+              <p class="font-weight-bold mb-0" id="meta-name"></p>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">AI</a>
+              <a class="dropdown-item" href="#">AS</a>
+              <a class="dropdown-item" href="#">BL</a>
+              <a class="dropdown-item" href="#">CA</a>
+              <a class="dropdown-item" href="#">HI</a>
+              <a class="dropdown-item" href="#">NH</a>
+              <a class="dropdown-item" href="#">OT</a>
+              <a class="dropdown-item" href="#">PI</a>
+              <a class="dropdown-item" href="#">UNK</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="d-flex border justify-content-around bg-info">
+        <div class="bg-secondary text-light p-4">
+          <div class="d-flex align-items-center h-100">
+            <i class="fa fa-3x fa-fw fa-cog"></i>
+          </div>
+        </div>
+        <div class="flex-grow-1 bg-white p-4">
+          <div class="btn-group-justified">
+            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <h7 class="text-uppercase text-secondary mb-0">Chronic Condition                                                                                                   </h7>
+              <p class="font-weight-bold mb-0" id="meta-name"></p>
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">16</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Creating a box for the result -->
+  <div class="card">
+    <div class="card-title text-center"><h3>Result</h3></div>
+    <div class="card-body text-center">Information here</div>
+  </div>
+</div>
+{% endblock content %}
