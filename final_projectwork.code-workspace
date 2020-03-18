@@ -1,8 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "./stroke_app"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"python.autoComplete.extraPaths": ["./stroke_app/forms.py"],
+	}
 }
