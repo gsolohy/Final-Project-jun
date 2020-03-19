@@ -17,10 +17,8 @@ column_info = pd.DataFrame(columns).drop(columns=0).rename(columns={1:'columns'}
 column_info['values'] = 0
 column_info.set_index('columns', inplace=True)
 
-def callin_db():
-    return ages, genders, races, conditions
-
 def calculate(age,gender,race,condition):
+    column_info['values'] = 0
     age_info = ages[int(age)][1]
     gen_info = genders[int(gender)][1]
     race_info = races[int(race)][1]
@@ -42,4 +40,4 @@ def calculate(age,gender,race,condition):
     predict_result = classifier_from_joblib.predict(user_data_rdy)
 
     print(f"filtered: {age_info},{gen_info},{race_info},{con_info}")
-    return predict_result
+    return f"Prediction Result:\n[0]low chance [1]high chance of stroke\nYour result:{predict_result}"
