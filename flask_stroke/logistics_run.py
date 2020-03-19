@@ -1,26 +1,45 @@
 import numpy as np
+import pandas as pd
 import joblib
 from sqlalchemy import create_engine, inspect
 
 classifier_from_joblib = joblib.load('data/log_trained.pkl')
 engine = create_engine("sqlite:///stroke.db",echo=False)
 
+ages_raw = engine.execute('select * from age').fetchall()
+ages = [(i,a[0]) for i,a in enumerate(ages_raw)]
+genders = engine.execute('select * from gender').fetchall()
+races = engine.execute('select * from race').fetchall()
+conditions = engine.execute('select * from condition').fetchall()
+columns = engine.execute('select * from column').fetchall()
+
+column_info = pd.DataFrame(columns).drop(columns=0).rename(columns={1:'columns'})
+column_info['values'] = 0
+column_info.set_index('columns', inplace=True)
+
 def callin_db():
-    ages = engine.execute('select * from age').fetchall()
-    genders = engine.execute('select * from gender').fetchall()
-    races = engine.execute('select * from race').fetchall()
-    conditions = engine.execute('select * from condition').fetchall()
     return ages, genders, races, conditions
 
-#args => age,gender,ethnicity,condition
-def calculate():
-    testdummy_data0 = np.array([[55,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0]]) # take in posted info
-    testdummy_data1 = np.array([[55,0,0,0,1,0,0,0,0,0,0,1,1,1,1,1,1]])
-    predict_result0 = classifier_from_joblib.predict(testdummy_data0) # run and save to variable
-    predict_result1 = classifier_from_joblib.predict(testdummy_data1)
+def calculate(age,gender,race,condition):
+    age_info = ages[int(age)][1]
+    gen_info = genders[int(gender)][1]
+    race_info = races[int(race)][1]
+    con_info = conditions[int(condition)][1]
+    
+    for i in range(len(column_info)):
+        name = column_info.iloc[i].name
+        if name == 'Age':
+            column_info.iloc[i,0] = age_info
+        elif name == 'Race_'+race_info:
+            column_info.iloc[i,0] = 1
+        elif name == 'Sex_'+gen_info:
+            column_info.iloc[i,0] = 1
+        elif name == con_info:
+            column_info.iloc[i,0] = 1
+            
+    user_data_raw = column_info['values'].values
+    user_data_rdy = np.array([user_data_raw])
+    predict_result = classifier_from_joblib.predict(user_data_rdy)
 
-    print(r"Result: LowStroke [0] or HighStroke [1]")
-    print(f"55 years old/caucasian/male/no condition:  {predict_result0}")
-    print(f"55 years old/caucasian/male/all(5) condition:  {predict_result1}")
-
-    return predict_result0
+    print(f"filtered: {age_info},{gen_info},{race_info},{con_info}")
+    return predict_result

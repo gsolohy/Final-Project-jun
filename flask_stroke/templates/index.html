@@ -7,85 +7,95 @@
     <hr class="my-4">
     <p>Utilizing machine learning to predict the chance of you getting a stroke.</p>
   </div>
-  <div class="row mb-4">
-    <div class="col-md">
-      <div class="d-flex border justify-content-around bg-info">
-        <div class="bg-secondary text-light p-4">
-          <div class="d-flex align-items-center h-100">
-            <i class="fa fa-3x fa-fw fa-cog"></i>
+  <form name="field-data" method="POST" action=".">
+    {{ form.csrf_token }}
+    <div class="row mb-4">
+      <div class="col-md">
+        <div class="d-flex border justify-content-around bg-info">
+          <div class="bg-secondary text-light p-4">
+            <div class="d-flex align-items-center h-100">
+              <i class="fa fa-3x fa-fw fa-cog"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 bg-white p-4">
+            <h7 class="text-uppercase text-secondary mb-0">Age &nbsp&nbsp&nbsp&nbsp</h7>
+            {{ form.age(class="mdb-select md-form") }}
+            <!-- <select name="age_sel" class="mdb-select md-form">
+              <option value="" disabled selected>Select</option>
+              {% for age in ages %}
+                <option value="{{ loop.index }}">{{ age[0] }} &nbsp&nbsp</option>
+              {% endfor %}
+            </select> -->
           </div>
         </div>
-        <div class="flex-grow-1 bg-white p-4">
-          <h7 class="text-uppercase text-secondary mb-0">Age &nbsp&nbsp</h7>
-          <select class="mdb-select md-form">
-            <option value="" disabled selected>Select</option>
-            {% for age in ages %}
-              <option value="{{ loop.index }}">{{ age[0] }} &nbsp&nbsp</option>
-            {% endfor %}
-          </select>
+      </div>
+      <div class="col-md">
+        <div class="d-flex border justify-content-around bg-info">
+          <div class="bg-secondary text-light p-4">
+            <div class="d-flex align-items-center h-100">
+              <i class="fa fa-3x fa-fw fa-cog"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 bg-white p-4">
+            <h7 class="text-uppercase text-secondary mb-0">Gender &nbsp</h7>
+            {{ form.gender(class="mdb-select md-form") }}
+            <!-- <select name="gender_sel" class="mdb-select md-form">
+              <option value="" disabled selected>Select</option>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+            </select> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="d-flex border justify-content-around bg-info">
+          <div class="bg-secondary text-light p-4">
+            <div class="d-flex align-items-center h-100">
+              <i class="fa fa-3x fa-fw fa-cog"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 bg-white p-4">
+            <h7 class="text-uppercase text-secondary mb-0">Ethnicity</h7>
+            {{ form.race(class="mdb-select md-form") }}
+            <!-- <select name="race_sel" class="mdb-select md-form">
+              <option value="" disabled selected>Select</option>
+              {% for ethnicity in races %}
+                <option value="{{ loop.index }}">{{ ethnicity[1] }}</option>
+              {% endfor %}
+            </select> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="d-flex border justify-content-around bg-info">
+          <div class="bg-secondary text-light p-4">
+            <div class="d-flex align-items-center h-100">
+              <i class="fa fa-3x fa-fw fa-cog"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 bg-white p-4">
+            <h7 class="text-uppercase text-secondary mb-0">Condition</h7>
+            {{ form.condition(class="mdb-select md-form") }}
+            <!-- <select name="condition_sel" class="mdb-select md-form">
+              <option value="" disabled selected>Select</option>
+              {% for condition in conditions %}
+                <option value="{{ loop.index }}">{{ condition[1] }}</option>
+              {% endfor %}
+            </select> -->
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md">
-      <div class="d-flex border justify-content-around bg-info">
-        <div class="bg-secondary text-light p-4">
-          <div class="d-flex align-items-center h-100">
-            <i class="fa fa-3x fa-fw fa-cog"></i>
-          </div>
-        </div>
-        <div class="flex-grow-1 bg-white p-4">
-          <h7 class="text-uppercase text-secondary mb-0">Gender</h7>
-          <select class="mdb-select md-form">
-            <option value="" disabled selected>Select</option>
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-          </select>
-        </div>
-      </div>
+    <!-- Creating submit button -->
+    <div>
+      <a class="btn btn-secondary btn-lg btn-block" href="/submit" role="button">
+        Submit
+      </a>
     </div>
-    <div class="col-md">
-      <div class="d-flex border justify-content-around bg-info">
-        <div class="bg-secondary text-light p-4">
-          <div class="d-flex align-items-center h-100">
-            <i class="fa fa-3x fa-fw fa-cog"></i>
-          </div>
-        </div>
-        <div class="flex-grow-1 bg-white p-4">
-          <h7 class="text-uppercase text-secondary mb-0">Ethnicity</h7>
-          <select class="mdb-select md-form">
-            <option value="" disabled selected>Select</option>
-            {% for ethnicity in races %}
-              <option value="{{ loop.index }}">{{ ethnicity[1] }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="col-md">
-      <div class="d-flex border justify-content-around bg-info">
-        <div class="bg-secondary text-light p-4">
-          <div class="d-flex align-items-center h-100">
-            <i class="fa fa-3x fa-fw fa-cog"></i>
-          </div>
-        </div>
-        <div class="flex-grow-1 bg-white p-4">
-          <h7 class="text-uppercase text-secondary mb-0">Condition</h7>
-          <select class="mdb-select md-form">
-            <option value="" disabled selected>Select</option>
-            {% for condition in conditions %}
-              <option value="{{ loop.index }}">{{ condition[1] }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Creating submit button -->
-  <div>
-    <a class="btn btn-secondary btn-lg btn-block" href="{{ url_for('submit') }}" role="button">
-      Submit
-    </a>
-  </div>
+    <!-- <div class="form-group">
+      {{ form.submit(class="btn btn-secondary btn-lg btn-block") }}
+    </div> -->
+  </form>
   <br>
   
   <!-- Creating a box for the result -->
