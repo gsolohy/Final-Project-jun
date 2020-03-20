@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField, SelectMultipleField
+from wtforms import SubmitField, SelectField, SelectMultipleField, widgets
 from wtforms.validators import DataRequired, EqualTo, ValidationError
 from logistics_run import calculate, ages, genders, races, conditions, columns
 import json
@@ -22,6 +22,10 @@ class user_submit(db.Model):
         return f"user_submit('{self.age}','{self.gender}','{self.race}','{self.condition}')"
 def user_submit_query():
     return user_submit.query
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
 
 class selectionForm(FlaskForm):
     age = SelectField('age', choices=ages, validators=[DataRequired()],default='',coerce=int)

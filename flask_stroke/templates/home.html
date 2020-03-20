@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="flex-grow-1 bg-white p-4">
-          <h7 class="text-uppercase text-secondary mb-0">Age &nbsp&nbsp&nbsp&nbsp</h7>  
+          <h7 class="text-uppercase text-secondary mb-0">Age &nbsp&nbsp</h7>  
           <div class="form-goup">
             {{ form.age(class="mdb-select md-form") }}
           </div>
@@ -53,8 +53,16 @@
           </div>
         </div>
         <div class="flex-grow-1 bg-white p-4">
-          <h7 class="text-uppercase text-secondary mb-0">Condition</h7>
-          {{ form.condition(class="mdb-select md-form") }}
+          <h7 class="text-uppercase text-secondary mb-0">Condition</h7><br>
+          <!-- {{ form.condition(class="mdb-select md-form") }} -->
+          {% for name in ['CKD', 'CarotidStenosis', 'DM','Dyslipidemia','HTN'] %}
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" data-toggle="toggle" id={{ name }}>
+                {{ name }}
+              </label>
+            </div>
+          {% endfor %}
           </select>
         </div>
       </div>
